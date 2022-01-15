@@ -18,10 +18,13 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect('home')
+            return redirect('menu')
         else:
             error_message = 'Invalid sign up - try again'
     # A bad POST or a GET request, so render signup.html with an empty form
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/sign_up.html', context)
+
+def menu(request):
+    return render(request, 'menu.html')
