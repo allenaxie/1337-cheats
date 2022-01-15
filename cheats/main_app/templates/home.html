@@ -13,9 +13,10 @@
     <h1>1337 Cheats</h1>
     <h5>Taking coders from zero to hero.</h5>
     <a type="submit" class="btn btn-dark" >View cheatsheets</a>
-    
+    {% if user.is_authenticated != True %}
     <a type="submit" class="btn btn-dark" href="{% url 'login' %}">Log In</a>
     <a type="submit" class="btn btn-dark" href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
     <p>
         Hello we are ABC. 3 coders making an application blah bvlah  lash abla 
     </p>
