@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Cheatsheet
+from django.views.generic.edit import CreateView
+from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -38,3 +42,9 @@ def menu(request):
 def cheatsheets_index(request):
     cheatsheets = Cheatsheet.objects.all()
     return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets})
+
+
+# @login_required
+class CheatsheetCreate(CreateView):
+    model = Cheatsheet
+    fields = ['title', 'topic']

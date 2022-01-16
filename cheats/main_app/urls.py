@@ -6,4 +6,6 @@ urlpatterns = [
     path('accounts/sign_up/', views.signup, name='signup'),
     path('menu/', views.menu, name='menu'),
     path('cheatsheets/', views.cheatsheets_index, name='cheatsheets_index'),
+    path('cheatsheets/create/', views.CheatsheetCreate.as_view(),
+         name='cheatsheets_create'),
 ]
