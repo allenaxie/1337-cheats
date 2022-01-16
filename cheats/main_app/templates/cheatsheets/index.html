@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>All Cheatsheets</h1>
+
+{% for cheatsheet in cheatsheets %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ cheatsheet.title }}</span>
+            <p>Title {{ cheatsheet.title }}</p>
+            <p>Topic {{ cheatsheet.topic }}</p>
+        </div>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

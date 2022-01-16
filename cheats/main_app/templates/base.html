@@ -21,10 +21,11 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cheatsheets_index' %}">View all Cheatsheets</a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="">Sign up</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign up</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                 {% endif %}
             </ul>
