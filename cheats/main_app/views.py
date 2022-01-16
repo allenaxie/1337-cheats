@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Cheatsheet
 
 # Create your views here.
+
+
 def home(request):
     return render(request, 'home.html')
+
 
 def signup(request):
     error_message = ''
@@ -26,5 +30,11 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/sign_up.html', context)
 
+
 def menu(request):
     return render(request, 'menu.html')
+
+
+def cheatsheets_index(request):
+    cheatsheets = Cheatsheet.objects.all()
+    return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets})
