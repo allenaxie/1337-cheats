@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Cheatsheet
+from .forms import ReviewForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
@@ -56,7 +57,11 @@ class CheatsheetCreate(CreateView):
 
 def cheatsheets_detail(request, cheatsheet_id):
     cheatsheet = Cheatsheet.objects.get(id=cheatsheet_id)
-    return render(request, 'cheatsheets/detail.html', {'cheatsheet': cheatsheet})
+    review_form = ReviewForm()
+    return render(request, 'cheatsheets/detail.html', {
+        'cheatsheet': cheatsheet,
+        'review_form': review_form,
+        })
 
 
 class CheatsheetUpdate(UpdateView):
@@ -67,3 +72,12 @@ class CheatsheetUpdate(UpdateView):
 class CheatsheetDelete(DeleteView):
     model = Cheatsheet
     success_url = '/cheatsheets/'
+
+def add_review(request, cheatsheet_id):
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        new_review = form.save(commit=False)
+        new_review.cheatsheet_id = cheatsheet_id
+        new_review.user_id = request.user.id
+        new_review.save()
+    return redirect('cheatsheets_detail', cheatsheet_id = cheatsheet_id)

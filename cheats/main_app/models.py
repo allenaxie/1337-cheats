@@ -16,3 +16,14 @@ class Cheatsheet(models.Model):
 
     def get_absolute_url(self):
         return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.id})
+
+class Review(models.Model):
+    rating = models.IntegerField()
+    comment = models.TextField(max_length=250)
+    
+    date = date.today()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cheatsheet = models.ForeignKey(Cheatsheet, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.rating
