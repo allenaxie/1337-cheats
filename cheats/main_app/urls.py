@@ -8,4 +8,6 @@ urlpatterns = [
     path('cheatsheets/', views.cheatsheets_index, name='cheatsheets_index'),
     path('cheatsheets/create/', views.CheatsheetCreate.as_view(),
          name='cheatsheets_create'),
+    path('cheatsheets/<int:cheatsheet_id>/',
+         views.cheatsheets_detail, name='cheatsheets_detail'),
 ]

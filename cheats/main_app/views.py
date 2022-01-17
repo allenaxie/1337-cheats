@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Cheatsheet
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
 
@@ -44,7 +44,16 @@ def cheatsheets_index(request):
     return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets})
 
 
-# @login_required
 class CheatsheetCreate(CreateView):
     model = Cheatsheet
     fields = ['title', 'topic']
+    success_url = '/cheatsheets/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+def cheatsheets_detail(request, cheatsheet_id):
+    cheatsheet = Cheatsheet.objects.get(id=cheatsheet_id)
+    return render(request, 'cheatsheets/detail.html', {'cheatsheet': cheatsheet})
