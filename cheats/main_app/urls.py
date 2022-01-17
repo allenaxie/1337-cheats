@@ -10,4 +10,8 @@ urlpatterns = [
          name='cheatsheets_create'),
     path('cheatsheets/<int:cheatsheet_id>/',
          views.cheatsheets_detail, name='cheatsheets_detail'),
+    path('cheatsheets/<int:pk>/update/',
+         views.CheatsheetUpdate.as_view(), name='cheatsheets_update'),
+    path('cheatsheets/<int:pk>/delete/',
+         views.CheatsheetDelete.as_view(), name='cheatsheets_delete'),
 ]

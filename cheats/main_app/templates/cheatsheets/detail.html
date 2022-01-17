@@ -12,7 +12,8 @@
           <p>Cheatsheet: {{ cheatsheet.topic }}</p>
         </div>
         <div class="card-action">
-          
+          <a href="{% url 'cheatsheets_update' cheatsheet.id %}">Edit</a>
+          <a href="{% url 'cheatsheets_delete' cheatsheet.id %}">Delete</a> 
         </div>
       </div>
     </div>
