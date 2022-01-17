@@ -12,9 +12,9 @@
     <title>Menu</title>
 </head>
 <body>
-    <a class="btn btn-dark" >Go to all cheatsheets</a>
-    <a class="btn btn-dark" >Upload my own cheatsheet</a>
-    <a class="btn btn-dark" >View my favorites</a>
+    <a class="btn btn-dark" href="{% url 'cheatsheets_index' %}">Go to all cheatsheets</a>
+    <a class="btn btn-dark" href="{% url 'cheatsheets_create' %}">Upload my own cheatsheet</a>
+    <a class="btn btn-dark">View my favorites</a>
 </body>
 </html>
 
