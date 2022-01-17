@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Cheatsheet
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
@@ -57,3 +57,13 @@ class CheatsheetCreate(CreateView):
 def cheatsheets_detail(request, cheatsheet_id):
     cheatsheet = Cheatsheet.objects.get(id=cheatsheet_id)
     return render(request, 'cheatsheets/detail.html', {'cheatsheet': cheatsheet})
+
+
+class CheatsheetUpdate(UpdateView):
+    model = Cheatsheet
+    fields = ['topic']
+
+
+class CheatsheetDelete(DeleteView):
+    model = Cheatsheet
+    success_url = '/cheatsheets/'
