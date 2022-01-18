@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Cheatsheet, Review
+from .models import Cheatsheet, Review, Favorite
 from .forms import ReviewForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -97,3 +97,15 @@ class ReviewDelete(DeleteView):
     #     cheatsheet = self.object.cheatsheet
     #     return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.cheatsheet.id})
     
+    
+def add_favorite(request, cheatsheet_id):
+    f = Favorite()
+    f.cheatsheet_id = cheatsheet_id
+    f.user_id = request.user.id
+    f.save()
+    cheatsheet = Cheatsheet.objects.get(id=cheatsheet_id)
+    review_form = ReviewForm()
+    return render(request, 'cheatsheets/detail.html', {
+        'cheatsheet': cheatsheet,
+        'review_form': review_form,
+        })
