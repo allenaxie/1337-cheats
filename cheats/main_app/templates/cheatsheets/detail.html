@@ -30,7 +30,7 @@
   <table class="striped">
     <thead>
       <tr>
-        <th>USER</th>
+        <th>User</th>
         <th>Date</th>
         <th>Comment</th>
       </tr>
@@ -41,6 +41,10 @@
           <td>{{review.user}}</td>
           <td>{{review.date}}</td>
           <td>{{review.comment}}</td>
+          <td>
+            <a href="{% url 'reviews_update' cheatsheet.id review.id %}">Edit</a>
+            <a href="{% url 'reviews_delete' cheatsheet.id review.id%}">Delete</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
