@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Cheatsheet
+from .models import Cheatsheet, Review
 from .forms import ReviewForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -81,3 +81,12 @@ def add_review(request, cheatsheet_id):
         new_review.user_id = request.user.id
         new_review.save()
     return redirect('cheatsheets_detail', cheatsheet_id = cheatsheet_id)
+
+class ReviewUpdate(UpdateView):
+    model = Review
+    fields = ['rating', 'comment']
+    
+class ReviewDelete(DeleteView):
+    model = Review
+    success_url = '/cheatsheets/'
+    
