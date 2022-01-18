@@ -11,6 +11,6 @@ urlpatterns = [
     path('cheatsheets/<int:pk>/update/', views.CheatsheetUpdate.as_view(), name='cheatsheets_update'),
     path('cheatsheets/<int:pk>/delete/', views.CheatsheetDelete.as_view(), name='cheatsheets_delete'),
     path('cheatsheets/<int:cheatsheet_id>/add_review',views.add_review, name='add_review'),
-    path('cheatsheets/<int:pk>/<int:review_id>/update/', views.ReviewUpdate.as_view(), name='reviews_update'),
-    path('cheatsheets/<int:pk>/<int:review_id>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
+    path('reviews/<int:pk>/update/', views.ReviewUpdate.as_view(), name='reviews_update'),
+    path('reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
 ]

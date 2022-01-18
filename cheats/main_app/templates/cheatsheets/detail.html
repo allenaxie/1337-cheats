@@ -42,8 +42,8 @@
           <td>{{review.date}}</td>
           <td>{{review.comment}}</td>
           <td>
-            <a href="{% url 'reviews_update' cheatsheet.id review.id %}">Edit</a>
-            <a href="{% url 'reviews_delete' cheatsheet.id review.id%}">Delete</a>
+            <a href="{% url 'reviews_update' review.id %}">Edit</a>
+            <a href="{% url 'reviews_delete' review.id %}">Delete</a>
           </td>
         </tr>
       {% endfor %}
