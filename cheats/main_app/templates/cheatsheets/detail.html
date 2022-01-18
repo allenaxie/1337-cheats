@@ -11,9 +11,15 @@
           <span class="card-title">{{ cheatsheet.title }}</span>
           <p>Cheatsheet: {{ cheatsheet.topic }}</p>
         </div>
+        <div>
+          <a href="{% url 'add_favorite' cheatsheet.id %}">Add Favorite</a>
+          {% comment %} <a href="{% url 'favorites_delete' cheatsheet.id %}">Delete Favorite</a>  {% endcomment %}
+        </div>
+
         <div class="card-action">
           <a href="{% url 'cheatsheets_update' cheatsheet.id %}">Edit</a>
           <a href="{% url 'cheatsheets_delete' cheatsheet.id %}">Delete</a> 
+
         </div>
       </div>
     </div>
@@ -35,6 +41,9 @@
         <th>Comment</th>
       </tr>
     </thead>
+
+
+
     <tbody>
       {% for review in cheatsheet.review_set.all %}
         <tr>

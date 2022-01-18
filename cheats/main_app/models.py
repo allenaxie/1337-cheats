@@ -26,7 +26,15 @@ class Review(models.Model):
     cheatsheet = models.ForeignKey(Cheatsheet, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.rating
+        return f"{self.rating}"
     
     def get_absolute_url(self):
         return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.cheatsheet.id})
+    
+class Favorite(models.Model):
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cheatsheet = models.ForeignKey(Cheatsheet, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.user}"
