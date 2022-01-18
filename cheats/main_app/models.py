@@ -28,5 +28,5 @@ class Review(models.Model):
     def __str__(self):
         return self.rating
     
-    # def get_absolute_url(self):
-    #     return reverse('reviews_detail', kwargs={'pk': self.id})
+    def get_absolute_url(self):
+        return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.cheatsheet.id})
