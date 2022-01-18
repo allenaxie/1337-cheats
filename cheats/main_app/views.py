@@ -1,3 +1,4 @@
+from site import check_enableusersite
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
@@ -7,6 +8,7 @@ from .forms import ReviewForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 
 # Create your views here.
@@ -87,6 +89,11 @@ class ReviewUpdate(UpdateView):
     fields = ['rating', 'comment']
     
 class ReviewDelete(DeleteView):
-    model = Review
-    success_url = '/cheatsheets/'
+      model = Review
+      success_url = '/cheatsheets/'
+      
+    #   def get_success_url(self):
+    #     print('selfffff', self.object)
+    #     cheatsheet = self.object.cheatsheet
+    #     return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.cheatsheet.id})
     
