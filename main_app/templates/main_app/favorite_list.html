@@ -5,6 +5,7 @@
 {{favorites.2.cheatsheet}}
 {{cheatsheets.3.title}}
 <hr>
+
 <h1>Favorites List</h1>
 <!-- Look through Favorites object -->
 {% for favorite in favorites %}
@@ -13,25 +14,19 @@
         <!-- Search through cheatsheet object -->
         <!-- if cheatsheet.title == favorite.cheatsheet -->
         {% for cheatsheet in cheatsheets %}
-        asd
-            {% if favorite.cheatsheet == cheatsheet.title  %}
-                lalala
-                <!-- display cheatsheet info -->
-                {{ cheatsheet.title }}
-                {{ cheatsheet.topic }}
-                {{ cheatsheet.user }}
+            {% if favorite.cheatsheet.title == cheatsheet.title %}
+                <div class="card">
+                    <div class="card-header">
+                        <span> {{ cheatsheet.title }}</span>
+                    </div>
+                    <div class="card-body">
+                        {{cheatsheet.topic}}
+                    </div>
+                </div>
             {% endif %}
         {% endfor %}
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title"></span>
-        </div>
-    </div>
     {% endif %}
 {% endfor %}
- <!-- ELSE No favorites yet -->
- 
- <!-- <h4>No favorites added yet</h4> -->
 
 
 {% endblock %}
