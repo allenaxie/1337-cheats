@@ -13,11 +13,8 @@ urlpatterns = [
     path('cheatsheets/<int:cheatsheet_id>/add_review',views.add_review, name='add_review'),
     path('reviews/<int:pk>/update/', views.ReviewUpdate.as_view(), name='reviews_update'),
     path('reviews/<int:pk>/delete/', views.ReviewDelete.as_view(), name='reviews_delete'),
-    
-    
-    
     path('cheatsheets/<int:cheatsheet_id>/add_favorite',views.add_favorite, name='add_favorite'),
-
-
     path('favorites/<int:pk>/delete/', views.FavoriteDelete.as_view(), name='favorites_delete'),
+    # path('favorites/', views.FavoriteList.as_view(), name='favorites_index')
+    path('favorites/', views.favorites_index, name='favorites_index')
 ]
