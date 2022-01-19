@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{{favorites.2.cheatsheet}}
+{{cheatsheets.3.title}}
+<hr>
+<h1>Favorites List</h1>
+<!-- Look through Favorites object -->
+{% for favorite in favorites %}
+    <!-- if favorite's user equals user logged in -->
+    {% if favorite.user == request.user %}
+        <!-- Search through cheatsheet object -->
+        <!-- if cheatsheet.title == favorite.cheatsheet -->
+        {% for cheatsheet in cheatsheets %}
+        asd
+            {% if favorite.cheatsheet == cheatsheet.title  %}
+                lalala
+                <!-- display cheatsheet info -->
+                {{ cheatsheet.title }}
+                {{ cheatsheet.topic }}
+                {{ cheatsheet.user }}
+            {% endif %}
+        {% endfor %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title"></span>
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+ <!-- ELSE No favorites yet -->
+ 
+ <!-- <h4>No favorites added yet</h4> -->
+
+
+{% endblock %}

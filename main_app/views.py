@@ -113,3 +113,12 @@ def add_favorite(request, cheatsheet_id):
 class FavoriteDelete(DeleteView):
     model = Favorite
     success_url = '/cheatsheets/'
+
+# class FavoriteList(ListView):
+#     model = Favorite
+
+
+def favorites_index(request):
+    favorites = Favorite.objects.all()
+    cheatsheets = Cheatsheet.objects.all()
+    return render(request, 'main_app/favorite_list.html', {'favorites': favorites, 'cheatsheets': cheatsheets })
