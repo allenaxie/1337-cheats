@@ -19,5 +19,5 @@ urlpatterns = [
     path('cheatsheets/<int:cheatsheet_id>/add_favorite',views.add_favorite, name='add_favorite'),
 
 
-    # path('favorites/<int:pk>/delete/', views.FavoriteDelete.as_view(), name='favorites_delete'),
+    path('favorites/<int:pk>/delete/', views.FavoriteDelete.as_view(), name='favorites_delete'),
 ]

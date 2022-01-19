@@ -109,3 +109,7 @@ def add_favorite(request, cheatsheet_id):
         'cheatsheet': cheatsheet,
         'review_form': review_form,
         })
+
+class FavoriteDelete(DeleteView):
+    model = Favorite
+    success_url = '/cheatsheets/'
