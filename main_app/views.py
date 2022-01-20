@@ -12,8 +12,6 @@ from django.urls import reverse
 
 
 # Create your views here.
-
-
 def home(request):
     return render(request, 'home.html')
 
@@ -91,12 +89,6 @@ class ReviewUpdate(UpdateView):
 class ReviewDelete(DeleteView):
       model = Review
       success_url = '/cheatsheets/'
-      
-    #   def get_success_url(self):
-    #     print('selfffff', self.object)
-    #     cheatsheet = self.object.cheatsheet
-    #     return reverse('cheatsheets_detail', kwargs={'cheatsheet_id': self.cheatsheet.id})
-    
     
 def add_favorite(request, cheatsheet_id):
     f = Favorite()
@@ -112,11 +104,7 @@ def add_favorite(request, cheatsheet_id):
 
 class FavoriteDelete(DeleteView):
     model = Favorite
-    success_url = '/cheatsheets/'
-
-# class FavoriteList(ListView):
-#     model = Favorite
-
+    success_url = '/favorites/'
 
 def favorites_index(request):
     favorites = Favorite.objects.all()
