@@ -12,15 +12,17 @@
           <p>Cheatsheet: {{ cheatsheet.topic }}</p>
         </div>
         <div>
-          <a href="{% url 'add_favorite' cheatsheet.id %}">Add Favorite</a>
+
+          <a class="btn btn-dark" href="{% url 'add_favorite' cheatsheet.id %}">Add Favorite</a>
           
         </div>
-
+        {% if cheatsheet.user == request.user %}
         <div class="card-action">
           <a href="{% url 'cheatsheets_update' cheatsheet.id %}">Edit</a>
           <a href="{% url 'cheatsheets_delete' cheatsheet.id %}">Delete</a> 
-
         </div>
+        {% endif %}
+        Created by {{ cheatsheet.user }}
       </div>
     </div>
 </div>
