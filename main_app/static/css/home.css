@@ -11,6 +11,8 @@ body {
 }
 
 h1 {
-	font-size: 35px;
+	font-size: 45px;
 	font-family: 'Press Start 2P', cursive;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
 }

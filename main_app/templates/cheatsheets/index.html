@@ -1,24 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<h1>All Cheatsheets</h1>
-
-{% for cheatsheet in cheatsheets %}
-<a href="{% url 'cheatsheets_detail' cheatsheet.id %}">
-    <div class="card">
-        <div class="card-header"><span class="card-title">{{ cheatsheet.title }}</span></div>
-        <div class="card-content">
-            
-            <p> {{ cheatsheet.topic }}</p>
-            {% for photo in photos %}
-            {% if photo.cheatsheet.id == cheatsheet.id %}
-            <img src="{{photo.url}}"> </img>
-            {% endif %}
-            {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cheatsheets/index.css' %}">
+    <title>Cheatsheets Index</title>
+</head>
+<body>
+    <h1>All Cheatsheets</h1>
+    <div class="card-container">
+        <div class="row">
+            <div class="col">
+                {% for cheatsheet in cheatsheets %}
+                <a href="{% url 'cheatsheets_detail' cheatsheet.id %}">
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">{{ cheatsheet.title }}</span></div>
+                        <div class="card-content">
+                            <div id="photo_topic_container" class="row">
+                                <div class="col">
+                                    {% for photo in photos %}
+                                        {% if photo.cheatsheet.id == cheatsheet.id %}
+                                            <img class="card-image img-fluid" src="{{photo.url}}"> </img>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="col-6">
+                                    <p> {{ cheatsheet.topic }}</p>
+                                    <p> {{ cheatsheet.description }} </p>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-</a>
+    
+    {% endfor %}
+    
+</body>
+</html>
 
-{% endfor %}
 
 {% endblock %}

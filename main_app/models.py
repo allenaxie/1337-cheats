@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class Cheatsheet(models.Model):
     title = models.CharField(max_length=100)
     topic = models.CharField(max_length=100)
+    description = models.TextField(max_length=250, default="No description available yet")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
