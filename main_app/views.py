@@ -62,17 +62,46 @@ def cheatsheets_detail(request, cheatsheet_id):
     return render(request, 'cheatsheets/detail.html', {
         'cheatsheet': cheatsheet,
         'review_form': review_form,
-        })
+    })
 
 
 class CheatsheetUpdate(LoginRequiredMixin, UpdateView):
     model = Cheatsheet
     fields = ['topic']
 
+    def get(self, request, pk):
+        self.object = self.get_object()
+        if self.object.user == self.request.user:
+            return super().get(self, request, pk)
+        else:
+            return redirect('/cheatsheets/')
+
+    def post(self, request, pk):
+        self.object = self.get_object()
+        if self.object.user == self.request.user:
+            return super().post(self, request, pk)
+        else:
+            return redirect('/cheatsheets/')
+
 
 class CheatsheetDelete(LoginRequiredMixin, DeleteView):
     model = Cheatsheet
     success_url = '/cheatsheets/'
+
+    def get(self, request, pk):
+        self.object = self.get_object()
+        if self.object.user == self.request.user:
+            return super().get(self, request, pk)
+        else:
+            return redirect('/cheatsheets/')
+
+    def post(self, request, pk):
+        self.object = self.get_object()
+        if self.object.user == self.request.user:
+            return super().post(self, request, pk)
+        else:
+            return redirect('/cheatsheets/')
+
 
 @login_required
 def add_review(request, cheatsheet_id):
@@ -82,16 +111,19 @@ def add_review(request, cheatsheet_id):
         new_review.cheatsheet_id = cheatsheet_id
         new_review.user_id = request.user.id
         new_review.save()
-    return redirect('cheatsheets_detail', cheatsheet_id = cheatsheet_id)
+    return redirect('cheatsheets_detail', cheatsheet_id=cheatsheet_id)
+
 
 class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ['rating', 'comment']
-    
+
+
 class ReviewDelete(LoginRequiredMixin, DeleteView):
-      model = Review
-      success_url = '/cheatsheets/'
-    
+    model = Review
+    success_url = '/cheatsheets/'
+
+
 @login_required
 def add_favorite(request, cheatsheet_id):
     f = Favorite()
@@ -103,14 +135,16 @@ def add_favorite(request, cheatsheet_id):
     return render(request, 'cheatsheets/detail.html', {
         'cheatsheet': cheatsheet,
         'review_form': review_form,
-        })
+    })
+
 
 class FavoriteDelete(LoginRequiredMixin, DeleteView):
     model = Favorite
     success_url = '/favorites/'
 
+
 @login_required
 def favorites_index(request):
     favorites = Favorite.objects.all()
     cheatsheets = Cheatsheet.objects.all()
-    return render(request, 'main_app/favorite_list.html', {'favorites': favorites, 'cheatsheets': cheatsheets })
+    return render(request, 'main_app/favorite_list.html', {'favorites': favorites, 'cheatsheets': cheatsheets})
