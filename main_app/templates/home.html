@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,25 +8,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>1337 Cheats</title>
 </head>
 <body>
-    <h1>1337 Cheats</h1>
-    <h5>Taking coders from zero to hero.</h5>
+    <div class="container">
 
-    <a class="btn btn-dark" href="{% url 'cheatsheets_index' %}">View all Cheatsheets</a>
-
+        <h1>1337 Cheats</h1>
+        <h5>Taking coders from zero to hero.</h5>
     
-
-
-
-    {% if user.is_authenticated != True %}
-    <a type="submit" class="btn btn-dark" href="{% url 'login' %}">Log In</a>
-    <a type="submit" class="btn btn-dark" href="{% url 'signup' %}">Sign Up</a>
-    {% endif %}
-    <p>
-        Founded in 2022, 1337 Cheats is every bootcamp students dream. Our mission is to help people learn new concepts by way of “cheat sheets”. As former students ourselves, we noticed our desktops filling up with tons of notes and resource pages to reference later on. Every time we took notes to reference later we thought to ourselves, what if someone else has already created the perfect reference sheet? This led to us brainstorming a way for avid learners to share their favorite resources that have helped them learn to code. 1337 Cheats allows users to upload images of their “cheat sheets” and share them with other students. With the click of a button, you can help other students too. 
-    </p>
+        {% if user.is_authenticated != True %}
+        <a type="submit" class="btn btn-dark" href="{% url 'login' %}">Log In</a>
+        <a type="submit" class="btn btn-dark" href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+        <p>
+            Founded in 2022, 1337 Cheats is every bootcamp students dream. Our mission is to help people learn new concepts by way of “cheat sheets”. As former students ourselves, we noticed our desktops filling up with tons of notes and resource pages to reference later on. Every time we took notes to reference later we thought to ourselves, what if someone else has already created the perfect reference sheet? This led to us brainstorming a way for avid learners to share their favorite resources that have helped them learn to code. 1337 Cheats allows users to upload images of their “cheat sheets” and share them with other students. With the click of a button, you can help other students too. 
+        </p>
+        <a class="btn btn-dark" href="{% url 'cheatsheets_index' %}">View all Cheatsheets</a>
+    </div>
 </body>
 </html>
 
