@@ -16,17 +16,28 @@
         {% empty %}
         <div class="card-panel teal-text center-align">No Photos Uploaded</div>
         {% endfor %}
+        {% if cheatsheet.user == request.user %}
         <form action="{% url 'add_photo' cheatsheet.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
           {% csrf_token %}
           <input type="file" name="photo-file">
           <br><br>
           <input type="submit" class="btn" value="Upload Photo">
-      </form>
+        </form>
+        {% endif %}
+        
+        {% for favorite in favorites %}
+        {{ favorite.cheatsheet.id }}
+        {{ cheatsheet.id }}
+          {% if favorite.cheatsheet.id != cheatsheet.id %}
+            {% if favorite.user != request.user %}
         <div>
-
+         
           <a class="btn btn-dark" href="{% url 'add_favorite' cheatsheet.id %}">Add Favorite</a>
           
         </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
         {% if cheatsheet.user == request.user %}
         <div class="card-action">
           <a href="{% url 'cheatsheets_update' cheatsheet.id %}">Edit</a>

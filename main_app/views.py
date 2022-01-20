@@ -46,7 +46,8 @@ def menu(request):
 
 def cheatsheets_index(request):
     cheatsheets = Cheatsheet.objects.all()
-    return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets})
+    photos = Photo.objects.all()
+    return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets, 'photos': photos})
 
 
 class CheatsheetCreate(LoginRequiredMixin, CreateView):
@@ -62,9 +63,11 @@ class CheatsheetCreate(LoginRequiredMixin, CreateView):
 def cheatsheets_detail(request, cheatsheet_id):
     cheatsheet = Cheatsheet.objects.get(id=cheatsheet_id)
     review_form = ReviewForm()
+    favorites = Favorite.objects.all()
     return render(request, 'cheatsheets/detail.html', {
         'cheatsheet': cheatsheet,
         'review_form': review_form,
+        'favorites': favorites,
     })
 
 
@@ -172,4 +175,4 @@ def add_photo(request, cheatsheet_id):
             Photo.objects.create(url=url, cheatsheet_id=cheatsheet_id)
         except:
             print('An error occurred uploading file to S3')
-    return redirect('cheatsheets_detail', cheatsheet_id=cheatsheet_id)
+    # return redirect('cheatsheets_detail', cheatsheet_id=cheatsheet_id)

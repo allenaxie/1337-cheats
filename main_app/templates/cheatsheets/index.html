@@ -6,9 +6,15 @@
 {% for cheatsheet in cheatsheets %}
 <a href="{% url 'cheatsheets_detail' cheatsheet.id %}">
     <div class="card">
+        <div class="card-header"><span class="card-title">{{ cheatsheet.title }}</span></div>
         <div class="card-content">
-            <span class="card-title">{{ cheatsheet.title }}</span>
+            
             <p> {{ cheatsheet.topic }}</p>
+            {% for photo in photos %}
+            {% if photo.cheatsheet.id == cheatsheet.id %}
+            <img src="{{photo.url}}"> </img>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </a>
