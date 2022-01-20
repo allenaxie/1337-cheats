@@ -11,7 +11,7 @@
 </head>
 <body>
   <header >
-    <nav class="navbar navbar-expand-md bg-light">
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
       <div class="container-fluid">
         <a href="/" class="left navbar-brand">&nbsp;&nbsp;1337 Cheats</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -19,15 +19,19 @@
         </button>
         <div class="navbar-collapse collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{% url 'cheatsheets_index' %}">View all Cheatsheets</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cheatsheets_index' %}"><span class="bi-window-sidebar"></span> View all Cheatsheets</a></li>
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'favorites_index' %}">My Favorites</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'cheatsheets_create' %}">Add Cheatsheet</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">My Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'favorites_index' %}"><span class="bi-bookmark-heart"></span> My Favorites</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cheatsheets_create' %}"><span class="bi-pencil"></span> Add Cheatsheet</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}"><span class="bi-person-circle"></span> My Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><span class="bi-person-x"></span> Log Out</a></li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign up</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}"><span class="bi-person-plus"></span> Sign up</a></li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">
+                    <span class=" bi-box-arrow-in-right"></span> Login
+                  </a>
+                </li>
                 {% endif %}
             </ul>
         </div>
