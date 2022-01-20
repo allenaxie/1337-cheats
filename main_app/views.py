@@ -52,7 +52,7 @@ def cheatsheets_index(request):
 
 class CheatsheetCreate(LoginRequiredMixin, CreateView):
     model = Cheatsheet
-    fields = ['title', 'topic']
+    fields = ['title', 'topic','description']
     success_url = '/cheatsheets/'
 
     def form_valid(self, form):
@@ -73,7 +73,7 @@ def cheatsheets_detail(request, cheatsheet_id):
 
 class CheatsheetUpdate(LoginRequiredMixin, UpdateView):
     model = Cheatsheet
-    fields = ['topic']
+    fields = ['topic','description']
 
     def get(self, request, pk):
         self.object = self.get_object()
@@ -175,4 +175,4 @@ def add_photo(request, cheatsheet_id):
             Photo.objects.create(url=url, cheatsheet_id=cheatsheet_id)
         except:
             print('An error occurred uploading file to S3')
-    # return redirect('cheatsheets_detail', cheatsheet_id=cheatsheet_id)
+    return redirect('cheatsheets_detail', cheatsheet_id=cheatsheet_id)
