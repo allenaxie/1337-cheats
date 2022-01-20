@@ -24,8 +24,10 @@ urlpatterns = [
          views.add_favorite, name='add_favorite'),
     path('favorites/<int:pk>/delete/',
          views.FavoriteDelete.as_view(), name='favorites_delete'),
-    # path('favorites/', views.FavoriteList.as_view(), name='favorites_index')
     path('favorites/', views.favorites_index, name='favorites_index'),
     path('cheatsheets/<int:cheatsheet_id>/add_photo/',
          views.add_photo, name='add_photo'),
+    path('cheatsheets/create/add_photo/',
+         views.add_photo, name='add_photo2'),
+
 ]

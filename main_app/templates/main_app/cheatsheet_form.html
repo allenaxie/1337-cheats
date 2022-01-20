@@ -10,6 +10,12 @@
     {% csrf_token %}
     <table>
       {{ form.as_table }}
+      <form action="{% url 'add_photo2' %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <br><br>
+        <input type="submit" class="btn" value="Upload Photo">
+      </form>
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
