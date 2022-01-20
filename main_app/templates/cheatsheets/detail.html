@@ -26,8 +26,6 @@
         {% endif %}
         
         {% for favorite in favorites %}
-        {{ favorite.cheatsheet.id }}
-        {{ cheatsheet.id }}
           {% if favorite.cheatsheet.id != cheatsheet.id %}
             {% if favorite.user != request.user %}
         <div>
