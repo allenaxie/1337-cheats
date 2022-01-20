@@ -2,10 +2,6 @@
 {% block content %}
 
 
-{{favorites.2.cheatsheet}}
-{{cheatsheets.3.title}}
-<hr>
-
 <h1>Favorites List</h1>
 <!-- Look through Favorites object -->
 {% for favorite in favorites %}
@@ -21,6 +17,9 @@
                     </div>
                     <div class="card-body">
                         {{cheatsheet.topic}}
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'favorites_delete' favorite.id %}">Delete Favorite</a> 
                     </div>
                 </div>
             {% endif %}
