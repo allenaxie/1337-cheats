@@ -8,6 +8,7 @@ from .forms import ReviewForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
 
@@ -45,7 +46,7 @@ def cheatsheets_index(request):
     return render(request, 'cheatsheets/index.html', {'cheatsheets': cheatsheets})
 
 
-class CheatsheetCreate(CreateView):
+class CheatsheetCreate(LoginRequiredMixin, CreateView):
     model = Cheatsheet
     fields = ['title', 'topic']
     success_url = '/cheatsheets/'
@@ -64,15 +65,16 @@ def cheatsheets_detail(request, cheatsheet_id):
         })
 
 
-class CheatsheetUpdate(UpdateView):
+class CheatsheetUpdate(LoginRequiredMixin, UpdateView):
     model = Cheatsheet
     fields = ['topic']
 
 
-class CheatsheetDelete(DeleteView):
+class CheatsheetDelete(LoginRequiredMixin, DeleteView):
     model = Cheatsheet
     success_url = '/cheatsheets/'
 
+@login_required
 def add_review(request, cheatsheet_id):
     form = ReviewForm(request.POST)
     if form.is_valid():
@@ -82,14 +84,15 @@ def add_review(request, cheatsheet_id):
         new_review.save()
     return redirect('cheatsheets_detail', cheatsheet_id = cheatsheet_id)
 
-class ReviewUpdate(UpdateView):
+class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ['rating', 'comment']
     
-class ReviewDelete(DeleteView):
+class ReviewDelete(LoginRequiredMixin, DeleteView):
       model = Review
       success_url = '/cheatsheets/'
     
+@login_required
 def add_favorite(request, cheatsheet_id):
     f = Favorite()
     f.cheatsheet_id = cheatsheet_id
@@ -102,10 +105,11 @@ def add_favorite(request, cheatsheet_id):
         'review_form': review_form,
         })
 
-class FavoriteDelete(DeleteView):
+class FavoriteDelete(LoginRequiredMixin, DeleteView):
     model = Favorite
     success_url = '/favorites/'
 
+@login_required
 def favorites_index(request):
     favorites = Favorite.objects.all()
     cheatsheets = Cheatsheet.objects.all()
