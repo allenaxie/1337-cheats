@@ -17,8 +17,7 @@
         <div class="row">
             <div class="col">
                 {% for cheatsheet in cheatsheets %}
-                
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-header"><span class="card-title">{{ cheatsheet.title }}</span></div>
                         <div class="card-content">
                             <div id="photo_topic_container" class="row">
@@ -37,12 +36,12 @@
                             </div>
                         </div>
                     </div>
-                
+                {% endfor %}
             </div>
         </div>
     </div>
     
-    {% endfor %}
+    
     
 </body>
 </html>
