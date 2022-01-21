@@ -16,7 +16,13 @@
                         <span> {{ cheatsheet.title }}</span>
                     </div>
                     <div class="card-body">
+                        {% for photo in photos %}
+                            {% if photo.cheatsheet.id == cheatsheet.id %}
+                                <img class="card-image img-fluid" src="{{photo.url}}"> </img>
+                            {% endif %}
+                        {% endfor %}
                         {{cheatsheet.topic}}
+                        <a class="btn btn-success" href="{% url 'cheatsheets_detail' cheatsheet.id %}">Details</a>
                     </div>
                     <div class="card-footer">
                         <a href="{% url 'favorites_delete' favorite.id %}">Delete Favorite</a> 

@@ -153,7 +153,8 @@ class FavoriteDelete(LoginRequiredMixin, DeleteView):
 def favorites_index(request):
     favorites = Favorite.objects.all()
     cheatsheets = Cheatsheet.objects.all()
-    return render(request, 'main_app/favorite_list.html', {'favorites': favorites, 'cheatsheets': cheatsheets})
+    photos = Photo.objects.all()
+    return render(request, 'main_app/favorite_list.html', {'favorites': favorites, 'cheatsheets': cheatsheets,'photos':photos})
 
 
 @login_required
