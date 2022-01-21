@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col">
                 {% for cheatsheet in cheatsheets %}
-                <a href="{% url 'cheatsheets_detail' cheatsheet.id %}">
+                
                     <div class="card">
                         <div class="card-header"><span class="card-title">{{ cheatsheet.title }}</span></div>
                         <div class="card-content">
@@ -29,16 +29,15 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-sm-6">
                                     <p> {{ cheatsheet.topic }}</p>
                                     <p> {{ cheatsheet.description }} </p>
-                                    
+                                    <a class="btn btn-success" href="{% url 'cheatsheets_detail' cheatsheet.id %}">Details</a>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
-                </a>
+                
             </div>
         </div>
     </div>
@@ -47,6 +46,5 @@
     
 </body>
 </html>
-
 
 {% endblock %}

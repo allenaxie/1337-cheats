@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    text-align: center;
+}
+
+img {
+    max-width: 70%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.up_photo_btn {
+    margin-bottom: 1rem;
+}
+
+.add_fav_btn {
+    margin-bottom: 1rem;
+}
+
+.review_title {
+    margin-top: 2rem;
+}
+
